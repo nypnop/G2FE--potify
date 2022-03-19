@@ -1,3 +1,6 @@
+# G2FE--potify
+Homework of Generasi GIGIH 2.0 Front-End Engineer Pathway
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
