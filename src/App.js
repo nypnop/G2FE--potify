@@ -1,6 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
-import Song from './pages/song.js';
+import React from 'react';
+import Song from './components/track/song.js';
 
 function App() {
   return (

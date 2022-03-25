@@ -1,5 +1,5 @@
 import './song.css';
-import data from '../data.js';
+import data from '../../data/data.js';
 
 function Song() {
     return(
