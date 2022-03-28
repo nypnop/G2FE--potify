@@ -1,16 +1,21 @@
-import './song.css';
+//import './song.css';
+import Track from './track.js';
 import data from '../../data/data.js';
+import track from '../../data/track.js';
 
 function Song() {
+    const trackList = track.map((song,idx) => {
     return(
-        <div class="container">
-            <h1 class="title">Track Info</h1>
-            <div class="song-container">
-                <img src={data.album.images[1].url} class="song-pic" id="song-pic"/>
-                <h1 class="song-title" id="song-title">{data.name}</h1>
-                <h2 class="song-detail" id="song-detail">{data.artists[0].name} - {data.album.name}</h2>
-                <input class="btn-select" type="submit" value="Select"/>
-            </div>
+        <Track key={idx} 
+        image={song.album.images[1].url}
+        name={song.name}
+        detail1={song.artists[0].name}
+        detail2={song.album.name} />
+    )})
+    return(
+        <div className="container">
+            <h1 className="title">Track Info</h1>
+            {trackList}
         </div>
     )
 } export default Song;
