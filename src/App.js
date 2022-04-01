@@ -1,52 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Song from './components/track/song.js';
 import './components/track/song.css';
+import {auth} from './grant_flow.js';
+import Search from './components/track/search.js'
 
 
-const CLIENT_ID = "351d2052bbdb4c60be817eaea55f80ad";
-const ENDPOINT = "https://accounts.spotify.com/authorize";
-const URI_CALLBACK = "http://localhost:3000"
-const SCOPES = "playlist-modify-private";
-
-const getParamsFromAuth = (hash) => {
-  const string = hash.substring(1);
-  const paramsFromURL = string.split("&");
-  const paramsKeyValue = paramsFromURL.reduce((keyurl, valueurl) => {
-    const [key,value] = valueurl.split("=");
-    key[keyurl] = value;
-    return key;
-  }, {});
-
-  return paramsKeyValue;
-}
 
 function App() {
+  const [token, setToken] = useState("");
+
   useEffect(() => {
-    if(window.location.hash) {
-      const { access_token, expires_in, token_type } = getParamsFromAuth(window.location.hash);
-
-      localStorage.clear();
-      localStorage.setItem("accessToken", access_token);
-      localStorage.setItem("tokenType", token_type);
-      localStorage.setItem("expiresIn", expires_in);
+    const value = window.location.hash;
+    window.location.hash = "";
+    if(!token && value) {
+      const token = value.split("&")[0].split("=")[1];
+      
+      window.localStorage.setItem("token", token);   
+      setToken(token); 
+      console.log(token);
     }
-  });
+  }, [token]
+    
+  )
 
-  const handleLogin = () => {
-    window.location =  `${ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${URI_CALLBACK}&scope=${SCOPES}&response_type=token&show_dialog=true`
-  }
-  return (
+  
+  return !token ? (
+    
     <div className='container'>
-      <button onClick={handleLogin}>login</button>
+      <div className='link'>
+        <a href={auth}>Login</a>
+      </div>
+      
       <Song />
 
     </div> 
-  );
+  ) : <Search />
     
   
 }
 
 export default App;
-//reference auth : https://github.com/carmellemillar/carmelle-codes-react-app/blob/main/src/pages/WebApp/WebApp.js
-//still not yet done
+//reference : Ridho KM_G2FE3255
 
