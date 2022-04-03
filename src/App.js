@@ -3,6 +3,7 @@ import Song from './components/track/song.js';
 import './components/track/song.css';
 import {auth} from './grant_flow.js';
 import Search from './components/track/search.js'
+import { Sample } from './components/playlist/form-playlist.js'
 
 
 
@@ -34,8 +35,11 @@ function App() {
       <Song />
 
     </div> 
-  ) : <Search />
+  ) : <div className='auth-after'>
+      <Search />
+      <Sample />
     
+    </div>
   
 }
 
