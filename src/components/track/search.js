@@ -8,6 +8,7 @@ function Search() {
     const [search, setSearch] = useState("");
     const [songs, setSongs] = useState([]);
     const [token, setToken] = useState("");
+    const playlist_id = "38cy3bhKHnsu7T4Vh24HUr";
     //Todo buat fungsi select sama deselect (add to list and hapus dari list)
     useEffect(() => {
         if(window.localStorage.getItem('token')){
@@ -28,6 +29,7 @@ function Search() {
         const temp = selected;
         temp.push(id);
         setSelected(temp);
+        console.log(selected);
     }
 
     const deletefromList = (id) => {
@@ -55,6 +57,37 @@ function Search() {
 
         }
     }
+
+    const getPlaylist = async () =>{
+        const responseGetPlaylist = await
+            axios({
+                method: 'get',
+                url: `https://api.spotify.com/v1/me/playlists`,
+                headers : {
+                    Authorization : "Bearer " + token
+                },
+            })
+                .then(response=>response.data)
+            console.log(responseGetPlaylist);
+    }
+
+    const addToPlaylist = async () =>{
+        const responseAddPlaylist = await
+            axios({
+                method: 'post',
+                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
+                headers : {
+                    Authorization : "Bearer " + token
+                },
+                data : {
+                    uris : selected
+                }
+            })
+                .then(response => response.data)
+            console.log(responseAddPlaylist);
+    }
+   
+
     return(
         
             <div className="search-section">
@@ -70,6 +103,8 @@ function Search() {
                         )
                     })}
                 </div>
+                <button className="add-playlist" onClick={addToPlaylist}>Add to playlist</button>
+                <button className="check-playlist" onClick={getPlaylist}>Check playlist</button>
            
                 
                 

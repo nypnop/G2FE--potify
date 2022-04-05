@@ -10,8 +10,8 @@ const Sample = () => {
   const [token, setToken] = useState("");
   const [userID, setUserID] = useState("");
   const user_id =  "2i1r1f8jbh7tukytoglorwyuq";
-  const requestBodyCreatePlaylist = {name: 'helo',
-    description: 'wkowkw',
+  const requestBodyCreatePlaylist = {name: myText1,
+    description: myText2,
     public: false
 
   };
@@ -29,14 +29,15 @@ const Sample = () => {
         Authorization : "Bearer " + token
     }})
         .then(response => response.data)
-    const userID = responseUser.id;
+    // const userID = responseUser.id;
+    console.log(responseUser.id);
+    setUserID(responseUser.id);
     console.log(userID);
-    setUserID(userID);
-
   }
 
   const createPlaylist = async ()=>{
-      const responsePlaylist = await
+    getUserID();  
+    const responsePlaylist = await
       
       axios({
           method: 'post',
@@ -47,8 +48,8 @@ const Sample = () => {
         },
       })
         .then(response => response.data)
-    
-    console.log(responsePlaylist);
+    setUserID(responsePlaylist.id);
+    console.log(responsePlaylist.id);
   }
 
   const handleForm = (e) => {
@@ -57,7 +58,6 @@ const Sample = () => {
         alert("Judul tidak boleh lebih dari 10 karakter");
     } else {
         sendFromNetworkCall({ myText1, myText2 });
-        getUserID();
         createPlaylist();
 
     } 
@@ -67,6 +67,7 @@ const Sample = () => {
 
   const handleMyText1 = (e) => {
     setMyText1(e.target.value);
+    console.log(myText1);
   };
 
   const handleMyText2 = (e) => {
