@@ -2,19 +2,81 @@
 import React, { useEffect, useState } from 'react';
 import Track from './track.js';
 import axios from 'axios';
+import { Sample } from '../playlist/form-playlist.js'
 
-function Search() {
+const sendFromNetworkCall = (data) => console.log(data);
+
+function Search({token}) {
     const [selected, setSelected] = useState([]);
     const [search, setSearch] = useState("");
     const [songs, setSongs] = useState([]);
-    const [token, setToken] = useState("");
-    const playlist_id = "38cy3bhKHnsu7T4Vh24HUr";
-    //Todo buat fungsi select sama deselect (add to list and hapus dari list)
+    const [myText1, setMyText1] = useState("");
+    const [myText2, setMyText2] = useState("");
+    const [userID, setUserID] = useState([]);
+    const [playlistID, setPlaylistID] = useState("");
+
+    const requestBodyCreatePlaylist = {name: myText1,
+        description: myText2,
+        public: false
+    };
+    
+
     useEffect(() => {
-        if(window.localStorage.getItem('token')){
-            setToken(window.localStorage.getItem('token'))
+        if(token){
+            getUserID();
         }
-    })
+        
+    }, [token])
+
+    const getUserID = async () =>{
+        const responseUser = await
+
+        axios.get('https://api.spotify.com/v1/me', {headers : {
+            Authorization : "Bearer " + token
+        }})
+            .then(response => response.data)
+        // const userID = responseUser.id;
+        console.log(responseUser);
+        setUserID(responseUser);
+        
+    }
+    console.log(userID.id);
+
+    const createPlaylist = ()=>{ 
+        
+        axios({
+            method: 'post',
+            url: `https://api.spotify.com/v1/users/${userID.id}/playlists`,
+            data: requestBodyCreatePlaylist,
+            headers : {
+                Authorization : "Bearer " + token
+            },
+        })
+            .then(response => setPlaylistID(response.data.id))
+          
+    } 
+    console.log(playlistID);
+
+    const handleForm = (e) => {
+        e.preventDefault();
+        if(myText1.length >= 10){
+            alert("Judul tidak boleh lebih dari 10 karakter");
+        } else {
+            sendFromNetworkCall({ myText1, myText2 });
+            alert('Sukses menambahkan playlist');
+            createPlaylist();
+        } 
+
+        
+    };
+
+    const handleMyText1 = (e) => {
+        setMyText1(e.target.value);
+    };
+
+    const handleMyText2 = (e) => {
+        setMyText2(e.target.value);
+    };
 
     const changeBool = (id) => {
         let bool = false;
@@ -72,10 +134,11 @@ function Search() {
     }
 
     const addToPlaylist = async () =>{
+        
         const responseAddPlaylist = await
             axios({
                 method: 'post',
-                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
+                url: `https://api.spotify.com/v1/playlists/${playlistID}/tracks`,
                 headers : {
                     Authorization : "Bearer " + token
                 },
@@ -94,6 +157,8 @@ function Search() {
             
                 <input className="text-section" type="text" value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="Cari apa yang kamu inginkan"/>
                 <input className="btn-section" type="submit" value="Cari" onClick={searchSong}/>
+                <Sample handleForm={handleForm} handleMyText1={handleMyText1} handleMyText2={handleMyText2}
+                myText1={myText1} myText2={myText2} />
                 <div>
                     {songs.map((song)=>{
                         const status=changeBool(song.uri);

@@ -1,84 +1,11 @@
-import axios from "axios";
-
-const { useState, useEffect } = require("react");
-
-const sendFromNetworkCall = (data) => console.log(data);
-
-const Sample = () => {
-  const [myText1, setMyText1] = useState("");
-  const [myText2, setMyText2] = useState("");
-  const [token, setToken] = useState("");
-  const [userID, setUserID] = useState("");
-  const user_id =  "2i1r1f8jbh7tukytoglorwyuq";
-  const requestBodyCreatePlaylist = {name: myText1,
-    description: myText2,
-    public: false
-
-  };
-
-  useEffect(() => {
-    if(window.localStorage.getItem('token')){
-        setToken(window.localStorage.getItem('token'))
-    }
-  })
-
-  const getUserID = async () =>{
-    const responseUser = await
-
-    axios.get('https://api.spotify.com/v1/me', {headers : {
-        Authorization : "Bearer " + token
-    }})
-        .then(response => response.data)
-    // const userID = responseUser.id;
-    console.log(responseUser.id);
-    setUserID(responseUser.id);
-    console.log(userID);
-  }
-
-  const createPlaylist = async ()=>{
-    getUserID();  
-    const responsePlaylist = await
-      
-      axios({
-          method: 'post',
-          url: `https://api.spotify.com/v1/users/${user_id}/playlists`,
-          data: requestBodyCreatePlaylist,
-          headers : {
-            Authorization : "Bearer " + token
-        },
-      })
-        .then(response => response.data)
-    setUserID(responsePlaylist.id);
-    console.log(responsePlaylist.id);
-  }
-
-  const handleForm = (e) => {
-    e.preventDefault();
-    if(myText1.length >= 10){
-        alert("Judul tidak boleh lebih dari 10 karakter");
-    } else {
-        sendFromNetworkCall({ myText1, myText2 });
-        createPlaylist();
-
-    } 
-
-    
-  };
-
-  const handleMyText1 = (e) => {
-    setMyText1(e.target.value);
-    console.log(myText1);
-  };
-
-  const handleMyText2 = (e) => {
-    setMyText2(e.target.value);
-  };
+const Sample = ({handleForm, handleMyText1, handleMyText2, myText1, myText2}) => {
+  
 
   return (
     <>
       <h1>Form</h1>
-      <form onSubmit={handleForm}>
-        <label htmlFor="myText1">Text 1</label>
+      <form >
+        <label htmlFor="myText1">Judul</label>
         <input
           id="myText1"
           type="text"
@@ -87,7 +14,7 @@ const Sample = () => {
           onChange={handleMyText1}
           required
         />
-        <label htmlFor="myText2">Text 2</label>
+        <label htmlFor="myText2">Deskripsi</label>
         <textarea
           id="myText2"
           type="text"
@@ -96,7 +23,7 @@ const Sample = () => {
           onChange={handleMyText2}
           required
         />
-        <button type="submit">Submit</button>
+        <button onClick={handleForm} type="submit">Submit</button>
       </form>
     </>
   );
