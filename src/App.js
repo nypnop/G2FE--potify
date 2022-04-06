@@ -3,12 +3,17 @@ import Song from './components/track/song.js';
 import './components/track/song.css';
 import {auth} from './grant_flow.js';
 import Search from './components/track/search.js'
+import {useSelector, useDispatch} from 'react-redux';
+import { setUserToken } from './store/user.js'
+
 
 
 
 
 function App() {
-  const [token, setToken] = useState("");
+
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.user.token);
 
   useEffect(() => {
     const value = window.location.hash;
@@ -17,12 +22,12 @@ function App() {
       const token = value.split("&")[0].split("=")[1];
       
       window.localStorage.setItem("token", token);   
-      setToken(token); 
+      dispatch(setUserToken(token)); 
       console.log(token);
     }
-  }, [token]
+  }, [token, dispatch]
     
-  )
+  );
 
   
   return !token ? (
@@ -36,7 +41,7 @@ function App() {
 
     </div> 
   ) : <div className='auth-after'>
-      <Search token={token} />
+      <Search />
       
     
     </div>

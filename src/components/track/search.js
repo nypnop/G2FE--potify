@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import Track from './track.js';
 import axios from 'axios';
-import { Sample } from '../playlist/form-playlist.js'
+import { Sample } from '../playlist/form-playlist.js';
+import { useSelector} from 'react-redux';
 
 const sendFromNetworkCall = (data) => console.log(data);
 
-function Search({token}) {
+function Search() {
     const [selected, setSelected] = useState([]);
     const [search, setSearch] = useState("");
     const [songs, setSongs] = useState([]);
@@ -19,6 +20,8 @@ function Search({token}) {
         description: myText2,
         public: false
     };
+
+    const token = useSelector(state=> state.user.token);
     
 
     useEffect(() => {
