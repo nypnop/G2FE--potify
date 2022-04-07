@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import Song from './components/track/song.js';
 import './components/track/song.css';
 import {auth} from './grant_flow.js';
 import Search from './components/track/search.js'
 import {useSelector, useDispatch} from 'react-redux';
 import { setUserToken } from './store/user.js'
+import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 
 
 
@@ -30,22 +31,35 @@ function App() {
   );
 
   
-  return !token ? (
-    
-    <div className='container'>
-      <div className='link'>
-        <a href={auth}>Login</a>
-      </div>
+  return (
+    <Router>
+      <Switch>
+        <Route path="/create-playlist">
+          { token ? (
+            <div className='auth-after'>
+              <Search />
+            </div>
+          ) : (
+            <Redirect to ="/" />
+          ) }
+        </Route>
+        <Route path="/">
+          { !token ? (
+            <div className='container'>
+            <div className='link'>
+              <a href={auth}>Login</a>
+            </div>
+            
+            <Song />
       
-      <Song />
-
-    </div> 
-  ) : <div className='auth-after'>
-      <Search />
-      
-    
-    </div>
-  
+          </div> 
+          ) : (
+            <Redirect to="/create-playlist"/>
+          )}
+        </Route>
+      </Switch>
+    </Router>
+  ) 
 }
 
 export default App;

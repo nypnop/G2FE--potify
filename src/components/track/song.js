@@ -1,6 +1,6 @@
 //import './song.css';
 import Track from './track.js';
-import data from '../../data/data.js';
+
 import track from '../../data/track.js';
 
 function Song() {
