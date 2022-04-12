@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 import Song from './components/track/song.js';
 import './components/track/song.css';
-import {auth} from './grant_flow.js';
+import Login from './components/Login/login.js';
 import Search from './components/track/search.js'
 import {useSelector, useDispatch} from 'react-redux';
 import { setUserToken } from './store/user.js'
@@ -45,14 +45,7 @@ function App() {
         </Route>
         <Route path="/">
           { !token ? (
-            <div className='container'>
-            <div className='link'>
-              <a href={auth}>Login</a>
-            </div>
-            
-            <Song />
-      
-          </div> 
+            <Login />
           ) : (
             <Redirect to="/create-playlist"/>
           )}

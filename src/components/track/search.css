@@ -1,0 +1,44 @@
+.search-section {
+    display: flex;
+    flex-direction: column;
+    background-color: 	#121212;
+    height: 100%;
+    width: 100%;
+}
+
+.search-bar {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-section{
+    width: 40vw;
+    margin-right: 2vw;
+    height: 25px;
+    border-radius: 10px;
+}
+
+.btn-section {
+    height: 30px;
+    width: 10vw;
+    border-radius: 30px;
+    color: white;
+    border: whitesmoke;
+    background-color:rgba(29,185,84,0.5);
+}
+
+.btn-section:hover{
+    cursor: pointer;
+    background-color:rgba(29,185,84,1);
+}
+
+.button-addition{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+

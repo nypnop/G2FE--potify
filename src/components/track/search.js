@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Track from './track.js';
+import './search.css';
 import axios from 'axios';
 import { Sample } from '../playlist/form-playlist.js';
 import { useSelector} from 'react-redux';
@@ -157,12 +158,17 @@ function Search() {
     return(
         
             <div className="search-section">
-            
-                <input className="text-section" type="text" value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="Cari apa yang kamu inginkan"/>
-                <input className="btn-section" type="submit" value="Cari" onClick={searchSong}/>
+                <div className='search-bar'>
+                    <input className="text-section" type="text" value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="Cari apa yang kamu inginkan"/>
+                    <input className="btn-section" type="submit" value="Cari" onClick={searchSong}/>
+                </div>
                 <Sample handleForm={handleForm} handleMyText1={handleMyText1} handleMyText2={handleMyText2}
-                myText1={myText1} myText2={myText2} />
-                <div>
+                    myText1={myText1} myText2={myText2} />
+                <div className='button-addition'>
+                    <button className="add-playlist" onClick={addToPlaylist}>Add to playlist</button>
+                    <button className="check-playlist" onClick={getPlaylist}>Check playlist</button>
+                </div>    
+                <div className='container'>
                     {songs.map((song)=>{
                         const status=changeBool(song.uri);
                         return(
@@ -171,10 +177,6 @@ function Search() {
                         )
                     })}
                 </div>
-                <button className="add-playlist" onClick={addToPlaylist}>Add to playlist</button>
-                <button className="check-playlist" onClick={getPlaylist}>Check playlist</button>
-           
-                
                 
             </div>
     );

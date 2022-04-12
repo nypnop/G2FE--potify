@@ -1,0 +1,60 @@
+@font-face {
+    font-family: "Circular Std Book"; 
+    src: url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot"); 
+    src: url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff") format("woff"), url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.svg#Circular Std Book") format("svg"); 
+}
+.container-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #121212;
+    padding: 50px;
+    font-family: "Circular Std Book";
+    color: white;
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column;
+    background-color: #535353;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    width: 50vw;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 100px 10px 100px;
+}
+
+form input{
+    margin: 0 0 20px 0;
+    height: 25px;
+}
+
+form textarea{
+    margin: 0 0 20px 0;
+    height: 100px;
+}
+
+button{ 
+    background-color:rgba(29,185,84,0.5);
+    padding: 10px;
+    border-radius: 30px;
+    margin: 0 100px 0 100px;
+    color: white;
+    border: #121212;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color:rgba(29,185,84,1);
+}
+
+
+
+

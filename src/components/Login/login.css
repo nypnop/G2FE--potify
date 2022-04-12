@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "Circular Std Book"; 
+    src: url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot"); 
+    src: url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff") format("woff"), url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.svg#Circular Std Book") format("svg"); 
+}
+.container-login{
+    height: 100vh;
+    width: 100wh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color:#535353;
+    color: white;
+    font-family: "Circular Std Book";
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.link {
+    padding: 10px;
+    border-radius: 5px;
+    background-color:rgba(18,18,18,0.5);
+}
+
+.link:hover{
+    background-color: rgba(18,18,18,1);
+    cursor: pointer;
+}
