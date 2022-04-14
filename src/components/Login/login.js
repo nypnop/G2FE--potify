@@ -1,5 +1,6 @@
 import {auth} from '../../grant_flow.js';
 import './login.css';
+import Button from '@material-ui/core/Button';
 
 function Login() {
     return(
@@ -8,7 +9,7 @@ function Login() {
                 <h1>Login untuk melanjutkan</h1>
             </div>
             <div className='link'>
-              <a href={auth}>Login</a>
+              <Button variant="contained" href={auth}>Login</Button>
             </div>
       
         </div> 
