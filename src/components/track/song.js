@@ -1,5 +1,5 @@
 //import './song.css';
-import Track from './track.js';
+import Track from './track.tsx';
 
 import track from '../../data/track.js';
 

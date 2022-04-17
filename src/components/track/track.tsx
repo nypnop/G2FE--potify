@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
+import { MouseEventHandler } from 'react';
 
-
-function Track({image,name,detail1,detail2,props,click,unclick,id}) {
+type CallbackFunction = (id:string) => void;
+type Props = {
+    image:string,
+    name:string,
+    detail1:string,
+    detail2:string,
+    props:boolean,
+    click: CallbackFunction,
+    unclick: CallbackFunction,
+    id: string,
+}
+function Track({image,name,detail1,detail2,props,click,unclick,id}: Props) {
     const [clicked, setClicked] = useState(props);
     const clickedbtn = () =>{
         setClicked(!clicked);

@@ -1,20 +1,41 @@
 
 import React, { useEffect, useState } from 'react';
-import Track from './track.js';
+import Track from './track';
 import './search.css';
 import axios from 'axios';
+// @ts-ignore
 import { Sample } from '../playlist/form-playlist.js';
-import { useSelector} from 'react-redux';
+import { RootStateOrAny, useSelector} from 'react-redux';
 
-const sendFromNetworkCall = (data) => console.log(data);
+type Data ={
+    myText1: string,
+    myText2: string,
+}
+type Selected = string[];
+//song.album.image ; song.uri ; song.name ; song.artist.name ; song.album.name ; 
+type ResponseSearch = {
+    uri:string,
+    name:string,
+    artists:{
+        name:string,
+    }[],
+    album: {
+        name:string,
+        images:{
+            url:string,
+        }[],
+    },
+}
+const sendFromNetworkCall = (data:Data) => console.log(data);
 
 function Search() {
-    const [selected, setSelected] = useState([]);
+    
+    const [selected, setSelected] = useState<Selected>([]);
     const [search, setSearch] = useState("");
-    const [songs, setSongs] = useState([]);
+    const [songs, setSongs] = useState<ResponseSearch[]>([]);
     const [myText1, setMyText1] = useState("");
     const [myText2, setMyText2] = useState("");
-    const [userID, setUserID] = useState([]);
+    const [userID, setUserID] = useState<string>('');
     const [playlistID, setPlaylistID] = useState("");
 
     const requestBodyCreatePlaylist = {name: myText1,
@@ -22,7 +43,7 @@ function Search() {
         public: false
     };
 
-    const token = useSelector(state=> state.user.token);
+    const token = useSelector((state : RootStateOrAny) => state.user.token);
     
 
     useEffect(() => {
@@ -41,16 +62,16 @@ function Search() {
             .then(response => response.data)
         // const userID = responseUser.id;
         console.log(responseUser);
-        setUserID(responseUser);
+        setUserID(responseUser.id);
         
     }
-    console.log(userID.id);
+    //console.log(userID.id);
 
     const createPlaylist = ()=>{ 
         
         axios({
             method: 'post',
-            url: `https://api.spotify.com/v1/users/${userID.id}/playlists`,
+            url: `https://api.spotify.com/v1/users/${userID}/playlists`,
             data: requestBodyCreatePlaylist,
             headers : {
                 Authorization : "Bearer " + token
@@ -61,7 +82,7 @@ function Search() {
     } 
     console.log(playlistID);
 
-    const handleForm = (e) => {
+    const handleForm = (e : React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         if(myText1.length >= 10){
             alert("Judul tidak boleh lebih dari 10 karakter");
@@ -74,15 +95,15 @@ function Search() {
         
     };
 
-    const handleMyText1 = (e) => {
+    const handleMyText1 = (e : React.ChangeEvent<HTMLInputElement>) => {
         setMyText1(e.target.value);
     };
 
-    const handleMyText2 = (e) => {
+    const handleMyText2 = (e : React.ChangeEvent<HTMLInputElement>) => {
         setMyText2(e.target.value);
     };
 
-    const changeBool = (id) => {
+    const changeBool = (id : string) => {
         let bool = false;
         for(let i=0; i<selected.length; i++){
             if(selected[i]===id){
@@ -91,14 +112,14 @@ function Search() {
         } return bool;
     }
 
-    const addToList = (id) => {
-        const temp = selected;
+    const addToList = (id:string) => {
+        const temp: string[] = selected;
         temp.push(id);
         setSelected(temp);
         console.log(selected);
     }
 
-    const deletefromList = (id) => {
+    const deletefromList = (id : string) => {
         const temp = selected;
         for(let i =0; i<selected.length;i++){
             if(selected[i]===id){

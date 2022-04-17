@@ -2,7 +2,7 @@ import React, { useEffect} from 'react';
 import Song from './components/track/song.js';
 import './components/track/song.css';
 import Login from './components/Login/login.js';
-import Search from './components/track/search.js'
+import Search from './components/track/search.tsx';
 import {useSelector, useDispatch} from 'react-redux';
 import { setUserToken } from './store/user.js'
 import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
