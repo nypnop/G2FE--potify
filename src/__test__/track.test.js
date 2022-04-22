@@ -1,8 +1,9 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-
+import userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom/extend-expect'
 import Track from '../components/track/track'
+import { Sample } from '../components/playlist/form-playlist'
 
 test('All components should be render', () => {
   render(<Track />)
@@ -18,4 +19,14 @@ test('All components should be render', () => {
   expect(button).toBeInTheDocument()
   expect(title).toBeInTheDocument()
   expect(detail).toBeInTheDocument()
-})
+});
+
+test("Search box value should be same as user typing", () => {
+  render(<Sample />);
+
+  const searchBox = screen.getByLabelText("text-section");
+  userEvent.type(searchBox, "cat");
+
+  expect(searchBox.value).toBe("cat");
+});
+

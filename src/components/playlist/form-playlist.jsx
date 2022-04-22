@@ -11,6 +11,7 @@ const Sample = ({ handleForm, handleMyText1, handleMyText2, myText1, myText2 }) 
           <form >
             <label htmlFor="myText1">Judul</label>
             <input
+              aria-label="text-section"
               id="myText1"
               type="text"
               name="myText1"
