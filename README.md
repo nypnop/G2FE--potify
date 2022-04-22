@@ -24,6 +24,6 @@ Untuk menjalankan program.
 
 ### via link deployment
 
-// input link
+g2-fe-potify.vercel.app
 
 
