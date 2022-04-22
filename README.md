@@ -10,7 +10,7 @@ Aplikasi yang saya buat merupakan _web app_ memanfaatkan API dari Spotify for De
 
 # Cata Penggunaan
 
-## `git clone repo ini`
+### `git clone repo ini`
 
 Melakukan clone repository ini ke local pengguna
 
