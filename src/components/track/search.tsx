@@ -1,18 +1,18 @@
 
-import React, { useEffect, useState } from 'react';
-import Track from './track';
-import './search.css';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import Track from './track'
+import './search.css'
+import axios from 'axios'
 // @ts-ignore
-import { Sample } from '../playlist/form-playlist.js';
-import { RootStateOrAny, useSelector} from 'react-redux';
+import { Sample } from '../playlist/form-playlist.jsx'
+import { RootStateOrAny, useSelector } from 'react-redux'
 
 type Data ={
     myText1: string,
     myText2: string,
 }
 type Selected = string[];
-//song.album.image ; song.uri ; song.name ; song.artist.name ; song.album.name ; 
+//  song.album.image ; song.uri ; song.name ; song.artist.name ; song.album.name ; 
 type ResponseSearch = {
     uri:string,
     name:string,

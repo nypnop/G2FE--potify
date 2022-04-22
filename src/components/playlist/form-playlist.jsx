@@ -1,11 +1,11 @@
-import './form-playlist.css';
-const Sample = ({handleForm, handleMyText1, handleMyText2, myText1, myText2}) => {
-  
+import './form-playlist.css'
+import React from 'react'
 
+const Sample = ({ handleForm, handleMyText1, handleMyText2, myText1, myText2 }) => {
   return (
     <>
       <div className="container-form">
-      
+
         <div className="form-box">
           <h1>Create Playlist</h1>
           <form >
@@ -30,10 +30,10 @@ const Sample = ({handleForm, handleMyText1, handleMyText2, myText1, myText2}) =>
             <button onClick={handleForm} type="submit">Submit</button>
           </form>
         </div>
-        
+
       </div>
     </>
-  );
-};
+  )
+}
 
-export { Sample };
+export { Sample }

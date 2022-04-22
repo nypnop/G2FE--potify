@@ -1,9 +1,10 @@
-import {auth} from '../../grant_flow.js';
-import './login.css';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+import { auth } from '../../grant_flow.js'
+import './login.css'
+import Button from '@material-ui/core/Button'
 
-function Login() {
-    return(
+function Login () {
+  return (
         <div className='container-login'>
             <div className='header-login'>
                 <h1>Login untuk melanjutkan</h1>
@@ -11,7 +12,7 @@ function Login() {
             <div className='link'>
               <Button variant="contained" href={auth}>Login</Button>
             </div>
-      
-        </div> 
-    )
-} export default Login;
+
+        </div>
+  )
+} export default Login

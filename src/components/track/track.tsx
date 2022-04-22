@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { MouseEventHandler } from 'react';
 
 type CallbackFunction = (id:string) => void;
 type Props = {
