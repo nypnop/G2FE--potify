@@ -1,5 +1,5 @@
 const clientId = process.env.REACT_APP_SPOTIFY_KEY
-const redirectUri = 'http://localhost:3000'
+const redirectUri = 'https://g2-fe-potify.vercel.app/'
 
 const scope = ['playlist-modify-private', 'playlist-read-private']
 
